@@ -22,8 +22,8 @@ class KeyLoggerService(IKeyLogger):
         return self.key_presses
 
     def filter(self, key):
-        self.key_presses.append(key)
 
+        self.key_presses.append(key)
 
 
 
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     logger = KeyLoggerService()
     logger.start_listening()
 
-    #
+
     input("Press Enter to stop listening...\n")
     logger.stop_listening()
 
