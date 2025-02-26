@@ -12,8 +12,5 @@ class IKeyLogger(ABC):
     def stop_listening(self) -> None:
         pass
 
-    @abstractmethod
-    def get_listen_keys(self) -> List[str]:
-        pass
 
 

