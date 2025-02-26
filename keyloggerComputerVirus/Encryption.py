@@ -22,15 +22,14 @@ class Decoding:
         self.decoding = ""
 
     def decoding_cipher(self):
-        key_char = self.TXT[self.key]# i add that to fix the bug
-        arr = [(ord(i) ^ ord(key_char)) for i in self.cipher]
+        arr = [(ord(i) ^ ord(self.TXT[self.key])) for i in self.cipher]
         for i in arr:
             self.decoding += chr(i)
         return self.decoding
 
 
 if __name__ == "__main__":
-    a = Encryption('אח שלי אתה')
-    print(a.encryption_text())
-    b = Decoding(a.encryption_text())
+    a = Encryption("i im isaac tunik")
+    l = (a.encryption_text())
+    b = Decoding(l)
     print(b.decoding_cipher())

@@ -14,4 +14,5 @@ class WritingToTheServer:
         data = {"message": message}#now need to send that with time
         headers = {"Content-Type": "application/json"}
         response = requests.post(self.server_url, json=data, headers=headers)
-        print(response.json())
+        print(response.status_code ,"from w t s")
+        print(data["message"])

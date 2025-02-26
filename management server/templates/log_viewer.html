@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מציג קבצי Log</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>מציג קבצי Log - Keylogger</h1>
+
+        <div class="controls">
+            <input type="text" class="search-box" placeholder="חיפוש קבצים...">
+            <button class="refresh-button" onclick="loadFiles()">רענון</button>
+        </div>
+
+        <button class="back-button" onclick="showFilesList()">חזרה לרשימת הקבצים</button>
+
+        <div class="files-container" id="files-list">
+            <div class="loading">טוען קבצים...</div>
+        </div>
+
+        <div class="log-viewer" id="log-content">
+            <pre></pre>
+        </div>
+    </div>
+</body>
+</html>
